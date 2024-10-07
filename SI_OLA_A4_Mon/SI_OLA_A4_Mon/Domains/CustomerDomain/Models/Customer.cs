@@ -1,6 +1,6 @@
 ﻿using SI_OLA_A4_Mon.Domains.RentalAgreementDomain;
 
-namespace SI_OLA_A4_Mon.Domains.CustomerDomain;
+namespace SI_OLA_A4_Mon.Domains.CustomerDomain.Models;
 
 public class Customer
 {
@@ -8,7 +8,7 @@ public class Customer
     private string name { get; set; }
     private string email { get; set; }
     private Address address { get; set; }
-    private PaymentInfo paymentInfo { get; set; }
+    public PaymentInfo paymentInfo { get; set; }
     private string password { get; set; }
     private List<RentalAgreement> rentalAgreements { get; set; }
     
@@ -34,6 +34,22 @@ public class Customer
         this.password = password;
     }
     
+    //update method
+    public void UpdateCustomer(int id, string name, string email, Address address, PaymentInfo paymentInfo, string password)
+    {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.address = address;
+        this.paymentInfo = paymentInfo;
+        this.password = password;
+    }
+    
+    //get payment info
+    public PaymentInfo GetPaymentInfo()
+    {
+        return paymentInfo;
+    }
     public Customer()
     {
     }

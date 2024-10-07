@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SI_OLA_A4_Mon.Domains;
 using SI_OLA_A4_Mon.Domains.CustomerDomain;
+using SI_OLA_A4_Mon.Domains.CustomerDomain.Models;
 using SI_OLA_A4_Mon.Domains.PaymentDomain;
 using SI_OLA_A4_Mon.Domains.RentalAgreementDomain;
 using SI_OLA_A4_Mon.Domains.TrailerDomain;

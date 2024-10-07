@@ -1,4 +1,4 @@
-﻿namespace SI_OLA_A4_Mon.Domains.CustomerDomain;
+﻿namespace SI_OLA_A4_Mon.Domains.CustomerDomain.Models;
 
 public class PaymentInfo
 {
