@@ -1,11 +1,23 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using SI_OLA_A4_Mon.Domains;
+using SI_OLA_A4_Mon.Domains.CustomerDomain;
+using SI_OLA_A4_Mon.Domains.PaymentDomain;
+using SI_OLA_A4_Mon.Domains.RentalAgreementDomain;
+using SI_OLA_A4_Mon.Domains.TrailerDomain;
 
 namespace SI_OLA_A4_Mon;
 
 public class ApplicationDbContext : DbContext
 {
-    public DbSet<Task> Tasks { get; set; }
-
+    public DbSet<Payment> Payments { get; set; }
+    public DbSet<Customer> Customers { get; set; }
+    public DbSet<PaymentInfo> PaymentInfos { get; set; }
+    public DbSet<RentalAgreement> RentalAgreements { get; set; }   
+    public DbSet<Trailer> Trailers { get; set; }
+    public DbSet<Address> Addresses { get; set; }
+    public DbSet<RentalDuration> RentalDurations { get; set; }
+    public DbSet<Location> Locations { get; set; }
+    
     // Constructor that accepts DbContextOptions
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
     {
