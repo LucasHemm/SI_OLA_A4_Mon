@@ -1,4 +1,4 @@
-﻿namespace SI_OLA_A4_Mon.Domains.TrailerDomain;
+﻿namespace SI_OLA_A4_Mon.Domains.TrailerDomain.Models;
 
 public class Location
 {

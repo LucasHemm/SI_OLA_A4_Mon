@@ -1,4 +1,5 @@
 ﻿using SI_OLA_A4_Mon.Domains.RentalAgreementDomain;
+using SI_OLA_A4_Mon.Domains.RentalAgreementDomain.Models;
 
 namespace SI_OLA_A4_Mon.Domains.CustomerDomain.Models;
 

@@ -1,9 +1,8 @@
-﻿using SI_OLA_A4_Mon.Domains.CustomerDomain;
-using SI_OLA_A4_Mon.Domains.CustomerDomain.Models;
+﻿using SI_OLA_A4_Mon.Domains.CustomerDomain.Models;
 using SI_OLA_A4_Mon.Domains.PaymentDomain;
-using SI_OLA_A4_Mon.Domains.TrailerDomain;
+using SI_OLA_A4_Mon.Domains.TrailerDomain.Models;
 
-namespace SI_OLA_A4_Mon.Domains.RentalAgreementDomain;
+namespace SI_OLA_A4_Mon.Domains.RentalAgreementDomain.Models;
 
 public class RentalAgreement
 {

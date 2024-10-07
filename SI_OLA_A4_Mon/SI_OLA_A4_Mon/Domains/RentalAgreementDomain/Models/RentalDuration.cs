@@ -1,4 +1,4 @@
-﻿namespace SI_OLA_A4_Mon.Domains.RentalAgreementDomain;
+﻿namespace SI_OLA_A4_Mon.Domains.RentalAgreementDomain.Models;
 
 public class RentalDuration
 {
