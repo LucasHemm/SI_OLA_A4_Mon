@@ -1,0 +1,6 @@
+@SI_OLA_A4_Mon_HostAddress = http://localhost:5181
+
+GET {{SI_OLA_A4_Mon_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
