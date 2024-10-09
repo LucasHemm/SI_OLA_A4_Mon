@@ -3,6 +3,7 @@ using SI_OLA_A4_Mon.Domains;
 using SI_OLA_A4_Mon.Domains.CustomerDomain;
 using SI_OLA_A4_Mon.Domains.CustomerDomain.Models;
 using SI_OLA_A4_Mon.Domains.PaymentDomain;
+using SI_OLA_A4_Mon.Domains.PaymentDomain.Models;
 using SI_OLA_A4_Mon.Domains.RentalAgreementDomain;
 using SI_OLA_A4_Mon.Domains.RentalAgreementDomain.Models;
 using SI_OLA_A4_Mon.Domains.TrailerDomain;
@@ -36,7 +37,7 @@ public class ApplicationDbContext : DbContext
         // Only configure SQL Server if no options are provided (to avoid overriding options in tests)
         if (!optionsBuilder.IsConfigured)
         {
-            optionsBuilder.UseSqlServer("Server=localhost;Database=si_ola_a4_mon;Trusted_Connection=True;TrustServerCertificate=True;");
+            optionsBuilder.UseSqlServer("Server=localhost;Database=si_ola_a4_mon2;Trusted_Connection=True;TrustServerCertificate=True;");
         }
     }
 }

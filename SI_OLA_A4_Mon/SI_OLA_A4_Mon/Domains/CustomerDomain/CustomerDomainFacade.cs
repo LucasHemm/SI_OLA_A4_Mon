@@ -39,9 +39,12 @@ public class CustomerDomainFacade
     }
     
     //get customer
-    public Customer GetCustomer(int id)
+    public Customer GetCustomer(int id) 
     {
-        return context.Customers.Find(id) ?? throw new Exception("Customer not found");
+        return context.Customers
+            .Include(c => c.address)       // Include Address
+            .Include(c => c.paymentInfo)   // Include PaymentInfo
+            .FirstOrDefault(c => c.id == id) ?? throw new Exception("Customer not found");
     }
     public Customer GetCustomerWithPaymentInfo(int id)
     {
@@ -52,7 +55,10 @@ public class CustomerDomainFacade
     //get all customer
     public List<Customer> GetAllCustomers()
     {
-        return context.Customers.ToList();
+       return context.Customers
+            .Include(c => c.address)       // Include Address
+            .Include(c => c.paymentInfo).ToList()   // Include PaymentInfo
+            ?? throw new Exception("Customer not found");
     }
    
     

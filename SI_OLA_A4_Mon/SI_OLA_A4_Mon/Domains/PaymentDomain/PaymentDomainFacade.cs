@@ -1,4 +1,6 @@
-﻿namespace SI_OLA_A4_Mon.Domains.PaymentDomain;
+﻿using SI_OLA_A4_Mon.Domains.PaymentDomain.Models;
+
+namespace SI_OLA_A4_Mon.Domains.PaymentDomain;
 
 public class PaymentDomainFacade
 {

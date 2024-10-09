@@ -1,11 +1,11 @@
-﻿namespace SI_OLA_A4_Mon.Domains.PaymentDomain;
+﻿namespace SI_OLA_A4_Mon.Domains.PaymentDomain.Models;
 
 public class Payment
 {
-    public int id { get; set; } //primary key
-    private bool hasInsurance { get; set; }
-    private bool hasPaid { get; set; }
-    private bool hasLateFee { get; set; }
+    public int id { get; private set; } //primary key
+    public bool hasInsurance { get; private set; }
+    public bool hasPaid { get; private set; }
+    public bool hasLateFee { get; private set; }
     
     public Payment(int id, bool hasInsurance, bool hasPaid, bool hasLateFee)
     {

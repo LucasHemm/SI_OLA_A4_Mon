@@ -1,5 +1,6 @@
 ﻿using SI_OLA_A4_Mon.Domains.CustomerDomain.Models;
 using SI_OLA_A4_Mon.Domains.PaymentDomain;
+using SI_OLA_A4_Mon.Domains.PaymentDomain.Models;
 using SI_OLA_A4_Mon.Domains.TrailerDomain.Models;
 
 namespace SI_OLA_A4_Mon.Domains.RentalAgreementDomain.Models;
