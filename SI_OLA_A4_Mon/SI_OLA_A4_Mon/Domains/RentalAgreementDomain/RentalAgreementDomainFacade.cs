@@ -1,4 +1,5 @@
-﻿using SI_OLA_A4_Mon.Domains.CustomerDomain.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using SI_OLA_A4_Mon.Domains.CustomerDomain.Models;
 using SI_OLA_A4_Mon.Domains.PaymentDomain;
 using SI_OLA_A4_Mon.Domains.PaymentDomain.Models;
 using SI_OLA_A4_Mon.Domains.RentalAgreementDomain.Models;
@@ -24,13 +25,21 @@ public class RentalAgreementDomainFacade
         return rentalAgreement;
     }
     
-    //Update RentalAgreement
-    public void UpdateRentalAgreement(int id, RentalDuration duration, Payment payment, Trailer trailer, Customer customer)
+    
+    //Get RentalAgreement including all related entities
+    public RentalAgreement GetRentalAgreement(int id)
     {
-        RentalAgreement rentalAgreement = new RentalAgreement(id, duration, payment, trailer, customer);
-        context.RentalAgreements.Update(rentalAgreement);
-        context.SaveChanges();
+        return context.RentalAgreements
+            .Include(r => r.duration)
+            .Include(r => r.payment)
+            .Include(r => r.trailer)
+            .Include(r => r.trailer.location)
+            .Include(r => r.customer)
+            .Include(r => r.customer.address) 
+            .Include(r => r.customer.paymentInfo) 
+            .FirstOrDefault(r => r.id == id);
     }
+  
     
     
     

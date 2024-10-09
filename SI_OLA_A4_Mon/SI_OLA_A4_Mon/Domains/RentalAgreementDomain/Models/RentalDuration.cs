@@ -1,4 +1,6 @@
-﻿namespace SI_OLA_A4_Mon.Domains.RentalAgreementDomain.Models;
+﻿using SI_OLA_A4_Mon.Domains.RentalAgreementDomain.DTO_s;
+
+namespace SI_OLA_A4_Mon.Domains.RentalAgreementDomain.Models;
 
 public class RentalDuration
 {
@@ -22,6 +24,12 @@ public class RentalDuration
     
     public RentalDuration()
     {
+    }
+    
+    public RentalDuration(RentalDurationDTO rentalDuration)
+    {
+        this.startDate = rentalDuration.startDate;
+        this.endDate = rentalDuration.endDate;
     }
     
 }

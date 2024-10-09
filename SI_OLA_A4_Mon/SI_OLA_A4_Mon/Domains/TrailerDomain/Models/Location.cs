@@ -1,4 +1,6 @@
-﻿namespace SI_OLA_A4_Mon.Domains.TrailerDomain.Models;
+﻿using SI_OLA_A4_Mon.Domains.TrailerDomain.DTO_s;
+
+namespace SI_OLA_A4_Mon.Domains.TrailerDomain.Models;
 
 public class Location
 {
@@ -22,5 +24,12 @@ public class Location
     
     public Location()
     {
+    }
+    
+    public Location(LocationDTO location)
+    {
+        this.id = location.id;
+        this.companyName = location.companyName;
+        this.address = location.address;
     }
 }

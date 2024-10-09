@@ -1,4 +1,6 @@
-﻿namespace SI_OLA_A4_Mon.Domains.TrailerDomain.Models;
+﻿using SI_OLA_A4_Mon.Domains.TrailerDomain.DTO_s;
+
+namespace SI_OLA_A4_Mon.Domains.TrailerDomain.Models;
 
 public class Trailer
 {
@@ -25,6 +27,13 @@ public class Trailer
     
     public Trailer()
     {
+    }
+    
+    public Trailer(TrailerDTO trailer)
+    {
+        this.trailerNumber = trailer.trailerNumber;
+        this.status = trailer.status;
+        this.location = new Location(trailer.location);
     }
 
 }

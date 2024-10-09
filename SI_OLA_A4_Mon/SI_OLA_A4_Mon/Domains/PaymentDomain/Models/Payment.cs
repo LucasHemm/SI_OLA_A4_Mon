@@ -1,4 +1,6 @@
-﻿namespace SI_OLA_A4_Mon.Domains.PaymentDomain.Models;
+﻿using SI_OLA_A4_Mon.Domains.CustomerDomain.DTO_s;
+
+namespace SI_OLA_A4_Mon.Domains.PaymentDomain.Models;
 
 public class Payment
 {
@@ -25,5 +27,12 @@ public class Payment
     
     public Payment()
     {
+    }
+   
+    public Payment(PaymentDTO payment)
+    {
+        this.hasInsurance = payment.hasInsurance;
+        this.hasPaid = payment.hasPaid;
+        this.hasLateFee = payment.hasLateFee;
     }
 }
