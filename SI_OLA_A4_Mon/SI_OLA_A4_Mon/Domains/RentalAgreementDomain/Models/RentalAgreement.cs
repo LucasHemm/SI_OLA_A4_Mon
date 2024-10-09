@@ -7,11 +7,11 @@ namespace SI_OLA_A4_Mon.Domains.RentalAgreementDomain.Models;
 
 public class RentalAgreement
 {
-    public int id { get; set; } //primary key
-    private RentalDuration duration { get; set; }
-    private Payment payment { get; set; }
-    private Trailer trailer { get; set; }
-    private Customer customer { get; set; }
+    public int id { get; private set; } //primary key
+    public RentalDuration duration { get; private set; }
+    public Payment payment { get; private set; }
+    public Customer customer { get; private set; }
+    public Trailer trailer { get; private set; }
     
     public RentalAgreement(int id, RentalDuration duration, Payment payment, Trailer trailer, Customer customer)
     {

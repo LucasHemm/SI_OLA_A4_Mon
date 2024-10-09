@@ -51,7 +51,7 @@ public class TrailerDomainFacade
     }
     
     //Create location and save to db
-    public void CreateLocation(string companyName, Address address)
+    public void CreateLocation(string companyName, string address)
     {
         Location location = new Location(companyName, address);
         //save to db
@@ -60,7 +60,7 @@ public class TrailerDomainFacade
     }
     
     //Update location and save to db
-    public void UpdateLocation(int id, string companyName, Address address)
+    public void UpdateLocation(int id, string companyName, string address)
     {
         Location location = new Location(id, companyName, address);
         //save to db

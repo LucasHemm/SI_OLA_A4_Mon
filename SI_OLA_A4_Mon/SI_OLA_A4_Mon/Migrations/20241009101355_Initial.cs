@@ -31,7 +31,9 @@ namespace SI_OLA_A4_Mon.Migrations
                 columns: table => new
                 {
                     id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1")
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    companyName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    address = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -72,7 +74,9 @@ namespace SI_OLA_A4_Mon.Migrations
                 columns: table => new
                 {
                     id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1")
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    startDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    endDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -84,11 +88,20 @@ namespace SI_OLA_A4_Mon.Migrations
                 columns: table => new
                 {
                     id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1")
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    trailerNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    status = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    locationid = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Trailers", x => x.id);
+                    table.ForeignKey(
+                        name: "FK_Trailers_Locations_locationid",
+                        column: x => x.locationid,
+                        principalTable: "Locations",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -126,16 +139,38 @@ namespace SI_OLA_A4_Mon.Migrations
                 {
                     id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Customerid = table.Column<int>(type: "int", nullable: true)
+                    durationid = table.Column<int>(type: "int", nullable: false),
+                    paymentid = table.Column<int>(type: "int", nullable: false),
+                    customerid = table.Column<int>(type: "int", nullable: false),
+                    trailerid = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_RentalAgreements", x => x.id);
                     table.ForeignKey(
-                        name: "FK_RentalAgreements_Customers_Customerid",
-                        column: x => x.Customerid,
+                        name: "FK_RentalAgreements_Customers_customerid",
+                        column: x => x.customerid,
                         principalTable: "Customers",
-                        principalColumn: "id");
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_RentalAgreements_Payments_paymentid",
+                        column: x => x.paymentid,
+                        principalTable: "Payments",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_RentalAgreements_RentalDurations_durationid",
+                        column: x => x.durationid,
+                        principalTable: "RentalDurations",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_RentalAgreements_Trailers_trailerid",
+                        column: x => x.trailerid,
+                        principalTable: "Trailers",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
@@ -149,22 +184,42 @@ namespace SI_OLA_A4_Mon.Migrations
                 column: "paymentInfoid");
 
             migrationBuilder.CreateIndex(
-                name: "IX_RentalAgreements_Customerid",
+                name: "IX_RentalAgreements_customerid",
                 table: "RentalAgreements",
-                column: "Customerid");
+                column: "customerid");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RentalAgreements_durationid",
+                table: "RentalAgreements",
+                column: "durationid");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RentalAgreements_paymentid",
+                table: "RentalAgreements",
+                column: "paymentid");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RentalAgreements_trailerid",
+                table: "RentalAgreements",
+                column: "trailerid");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Trailers_locationid",
+                table: "Trailers",
+                column: "locationid");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Locations");
+                name: "RentalAgreements");
+
+            migrationBuilder.DropTable(
+                name: "Customers");
 
             migrationBuilder.DropTable(
                 name: "Payments");
-
-            migrationBuilder.DropTable(
-                name: "RentalAgreements");
 
             migrationBuilder.DropTable(
                 name: "RentalDurations");
@@ -173,13 +228,13 @@ namespace SI_OLA_A4_Mon.Migrations
                 name: "Trailers");
 
             migrationBuilder.DropTable(
-                name: "Customers");
-
-            migrationBuilder.DropTable(
                 name: "Addresses");
 
             migrationBuilder.DropTable(
                 name: "PaymentInfos");
+
+            migrationBuilder.DropTable(
+                name: "Locations");
         }
     }
 }

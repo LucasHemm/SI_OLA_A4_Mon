@@ -132,12 +132,27 @@ namespace SI_OLA_A4_Mon.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
 
-                    b.Property<int?>("Customerid")
+                    b.Property<int>("customerid")
+                        .HasColumnType("int");
+
+                    b.Property<int>("durationid")
+                        .HasColumnType("int");
+
+                    b.Property<int>("paymentid")
+                        .HasColumnType("int");
+
+                    b.Property<int>("trailerid")
                         .HasColumnType("int");
 
                     b.HasKey("id");
 
-                    b.HasIndex("Customerid");
+                    b.HasIndex("customerid");
+
+                    b.HasIndex("durationid");
+
+                    b.HasIndex("paymentid");
+
+                    b.HasIndex("trailerid");
 
                     b.ToTable("RentalAgreements");
                 });
@@ -149,6 +164,12 @@ namespace SI_OLA_A4_Mon.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
+
+                    b.Property<DateTime>("endDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("startDate")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("id");
 
@@ -163,6 +184,14 @@ namespace SI_OLA_A4_Mon.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
 
+                    b.Property<string>("address")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("companyName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("id");
 
                     b.ToTable("Locations");
@@ -176,7 +205,20 @@ namespace SI_OLA_A4_Mon.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
 
+                    b.Property<int>("locationid")
+                        .HasColumnType("int");
+
+                    b.Property<string>("status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("trailerNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("id");
+
+                    b.HasIndex("locationid");
 
                     b.ToTable("Trailers");
                 });
@@ -202,14 +244,48 @@ namespace SI_OLA_A4_Mon.Migrations
 
             modelBuilder.Entity("SI_OLA_A4_Mon.Domains.RentalAgreementDomain.Models.RentalAgreement", b =>
                 {
-                    b.HasOne("SI_OLA_A4_Mon.Domains.CustomerDomain.Models.Customer", null)
-                        .WithMany("rentalAgreements")
-                        .HasForeignKey("Customerid");
+                    b.HasOne("SI_OLA_A4_Mon.Domains.CustomerDomain.Models.Customer", "customer")
+                        .WithMany()
+                        .HasForeignKey("customerid")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SI_OLA_A4_Mon.Domains.RentalAgreementDomain.Models.RentalDuration", "duration")
+                        .WithMany()
+                        .HasForeignKey("durationid")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SI_OLA_A4_Mon.Domains.PaymentDomain.Models.Payment", "payment")
+                        .WithMany()
+                        .HasForeignKey("paymentid")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SI_OLA_A4_Mon.Domains.TrailerDomain.Models.Trailer", "trailer")
+                        .WithMany()
+                        .HasForeignKey("trailerid")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("customer");
+
+                    b.Navigation("duration");
+
+                    b.Navigation("payment");
+
+                    b.Navigation("trailer");
                 });
 
-            modelBuilder.Entity("SI_OLA_A4_Mon.Domains.CustomerDomain.Models.Customer", b =>
+            modelBuilder.Entity("SI_OLA_A4_Mon.Domains.TrailerDomain.Models.Trailer", b =>
                 {
-                    b.Navigation("rentalAgreements");
+                    b.HasOne("SI_OLA_A4_Mon.Domains.TrailerDomain.Models.Location", "location")
+                        .WithMany()
+                        .HasForeignKey("locationid")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("location");
                 });
 #pragma warning restore 612, 618
         }

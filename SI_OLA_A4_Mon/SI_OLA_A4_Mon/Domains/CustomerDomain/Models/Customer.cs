@@ -12,9 +12,8 @@ public class Customer
     public Address address { get; private set; }
     public PaymentInfo paymentInfo { get; private set; }
     public string password { get; private set; }
-    public List<RentalAgreement> rentalAgreements { get; private set; }
     
-    public Customer(int id, string name, string email, Address address, PaymentInfo paymentInfo, string password, List<RentalAgreement> rentalAgreements)
+    public Customer(int id, string name, string email, Address address, PaymentInfo paymentInfo, string password)
     {
         this.id = id;
         this.name = name;
@@ -22,7 +21,6 @@ public class Customer
         this.address = address;
         this.paymentInfo = paymentInfo;
         this.password = password;
-        this.rentalAgreements = rentalAgreements;
         
     }
     

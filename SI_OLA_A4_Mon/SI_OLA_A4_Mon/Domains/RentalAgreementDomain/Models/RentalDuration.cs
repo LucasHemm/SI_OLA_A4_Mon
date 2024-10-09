@@ -3,8 +3,8 @@
 public class RentalDuration
 {
     public int id { get; set; } //primary key
-    private DateTime startDate { get; set; }
-    private DateTime endDate { get; set; }
+    public DateTime startDate { get; private set; }
+    public DateTime endDate { get; private set; }
     
     public RentalDuration(int id, DateTime startDate, DateTime endDate)
     {

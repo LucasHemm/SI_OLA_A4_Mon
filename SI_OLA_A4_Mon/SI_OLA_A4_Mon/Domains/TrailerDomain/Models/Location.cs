@@ -3,10 +3,10 @@
 public class Location
 {
     public int id { get; set; } //primary key
-    private string companyName { get; set; }
-    private Address address { get; set; }
+    public string companyName { get; private set; }
+    public string address { get; private set; }
     
-    public Location(int id, string companyName, Address address)
+    public Location(int id, string companyName, string address)
     {
         this.id = id;
         this.companyName = companyName;
@@ -14,7 +14,7 @@ public class Location
     }
     
     //without id
-    public Location(string companyName, Address address)
+    public Location(string companyName, string address)
     {
         this.companyName = companyName;
         this.address = address;
