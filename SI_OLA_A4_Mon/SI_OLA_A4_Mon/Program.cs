@@ -6,6 +6,7 @@ using SI_OLA_A4_Mon;
 using SI_OLA_A4_Mon.Domains.CustomerDomain;
 using SI_OLA_A4_Mon.Domains.PaymentDomain;
 using SI_OLA_A4_Mon.Domains.RentalAgreementDomain;
+using SI_OLA_A4_Mon.Domains.TrailerDomain;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,6 +21,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddScoped<CustomerDomainFacade>();
 builder.Services.AddScoped<PaymentDomainFacade>();
 builder.Services.AddScoped<RentalAgreementDomainFacade>();
+builder.Services.AddScoped<TrailerDomainFacade>();
 
 // Enable Swagger/OpenAPI
 builder.Services.AddEndpointsApiExplorer();

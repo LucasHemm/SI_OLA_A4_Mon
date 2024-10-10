@@ -1,4 +1,5 @@
-﻿using SI_OLA_A4_Mon.Domains.TrailerDomain.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using SI_OLA_A4_Mon.Domains.TrailerDomain.Models;
 
 namespace SI_OLA_A4_Mon.Domains.TrailerDomain;
 
@@ -13,13 +14,13 @@ public class TrailerDomainFacade
     }
     
     //Create trailer and save to db
-    public void CreateTrailer(string trailerNumber, string status, Location location)
+    public void CreateTrailer(Trailer trailer)
     {
-        Trailer trailer = new Trailer(trailerNumber, status, location);
         //save to db
         context.Trailers.Add(trailer);
         context.SaveChanges();
     }
+    
     
     //Update trailer and save to db
     public void UpdateTrailer(int id, string trailerNumber, string status, Location location)
@@ -30,24 +31,19 @@ public class TrailerDomainFacade
         context.SaveChanges();
     }
     
-    //Delete trailer from db
-    public void DeleteTrailer(int id)
-    {
-        Trailer trailer = context.Trailers.Find(id);
-        context.Trailers.Remove(trailer);
-        context.SaveChanges();
-    }
-    
+   
     //Get all trailers
     public List<Trailer> GetAllTrailers()
     {
         return context.Trailers.ToList();
     }
     
-    //Get trailer by id
+    //Get trailer by id and include location
     public Trailer GetTrailerById(int id)
     {
-        return context.Trailers.Find(id) ?? throw new Exception("Trailer not found");
+        return context.Trailers
+            .Include(t => t.location)
+            .FirstOrDefault(t => t.id == id) ?? throw new Exception("Trailer not found");
     }
     
     //Create location and save to db
@@ -59,22 +55,6 @@ public class TrailerDomainFacade
         context.SaveChanges();
     }
     
-    //Update location and save to db
-    public void UpdateLocation(int id, string companyName, string address)
-    {
-        Location location = new Location(id, companyName, address);
-        //save to db
-        context.Locations.Update(location);
-        context.SaveChanges();
-    }
-    
-    //Delete location from db
-    public void DeleteLocation(int id)
-    {
-        Location location = context.Locations.Find(id);
-        context.Locations.Remove(location);
-        context.SaveChanges();
-    }
     
     //Get all locations
     public List<Location> GetAllLocations()
