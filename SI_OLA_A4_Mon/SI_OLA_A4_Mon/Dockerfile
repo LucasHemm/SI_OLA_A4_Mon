@@ -5,6 +5,7 @@ EXPOSE 8080
 
 # Set ASP.NET Core to listen on port 8080
 ENV ASPNETCORE_URLS=http://0.0.0.0:8080
+ENV ASPNETCORE_ENVIRONMENT=Development
 
 # Use the .NET Core SDK to build the project
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
