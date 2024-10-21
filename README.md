@@ -8,7 +8,7 @@ Table of contents:
 # Solution
 Our solution has been created in ASP.NET Core, using .NET 8, the solution is a rest api. 
 Currently it's a monolith which has been built using DDD. We have used the models created in our ola 3 to create the rest api. 
-# DDD approcahes
+# DDD approaches
 We used the bounded context we created in our ola 3 based on the functional requirements. These have been implemented in the solution as their own domain directory. Reflecting on it now the directories and structure should be named context and not domain, as domains is a part of the bounded context.
 
 However, we still managed to create the app based on each domain(bounded context), making sure that it was separated from the other domains. So the business logic and models and controllers are all in their own domain.
